@@ -1,0 +1,26 @@
+.menu {
+  position: fixed;
+  height: 100vh;
+  padding: 40px 55px;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.list {
+  margin-top: 110px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.arrow {
+  margin-top: auto;
+  margin-bottom: 0;
+}

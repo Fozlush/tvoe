@@ -1,95 +1,47 @@
 import Image from "next/image";
-import styles from "./page.module.css";
+import Link from "next/link";
+import styles from "./page.module.scss";
+import Button from "@/components/ui/button/Button";
+import SerialCard from "@/components/ui/serialCard/SerialCard";
+import { newTitles, topTitles } from "@/data/mock";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className={styles.page}>
+      <header className={styles.header}>
+        <Image className={styles.background} src='/images/backgrounds/indiana.png' alt="" width={1250} height={800}/>
+        <div className={styles.container}>
+          <Image src='/images/titles/indiana.png' alt="" width={576} height={228}/>
+          <p className={styles.header_text}>Неувядающий авантюрист и пытливый<br/>археолог-исследователь по‑прежнему в седле.</p>
+          <div className={styles.buttons_block}>
+            <Button text="Смотреть" colored={true}></Button>
+            <Button text="О фильме" colored={false}></Button>
+          </div>
         </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+      </header>
+      <section className={styles.sectionNew}>
+        <h3>Новинки</h3>
+        <div className={styles.newsList}>
+          {newTitles.map((el) => {
+            return (
+              <SerialCard image={el.image} title={el.title} rating={el.rating} size="large"/>
+            )
+          })}
+        </div>
+      </section>
+      <section className={styles.best_series_section}>
+        <h3><span className={styles.stroke_text}>Топ-10 </span> просмотров за неделю</h3>
+        <div className={styles.top_list}>
+          {topTitles.map((el, i) => {
+            return (
+              <div className={styles.top_list__card}>
+                <span className={styles.stroke_text}>{i + 1}</span>
+                <Image className={styles.top_list__image} src={el.image} alt='' width={398} height={597}/>
+              </div>
+            )
+          })}
+        </div>
+      </section>
+    </div>
+  )
 }
